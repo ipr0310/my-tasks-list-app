@@ -5,16 +5,18 @@ import { persist } from "zustand/middleware";
 type ThemeMode = "dark" | "light";
 
 interface AppStore {
-  theme: ThemeMode;
-  setTheme: () => void;
+  themeMode: ThemeMode;
+  toggleThemeMode: () => void;
 }
 
 export const useAppStore = create<AppStore>()(
   persist(
     (set, get) => ({
-      theme: "light",
-      setTheme: () =>
-        set(() => ({ theme: get().theme === "dark" ? "light" : "dark" })),
+      themeMode: "light",
+      toggleThemeMode: () =>
+        set(() => ({
+          themeMode: get().themeMode === "dark" ? "light" : "dark",
+        })),
     }),
     {
       name: "app-storage", // name of item in the storage (must be unique)

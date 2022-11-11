@@ -1,40 +1,36 @@
-import { StatusBar } from "expo-status-bar";
-import { Text, View, TouchableOpacity } from "react-native";
+import { useMemo } from "react";
+import {
+  Provider as PaperProvider,
+  MD3LightTheme,
+  MD3DarkTheme,
+} from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAppStore } from "./store";
-import { ThemeInitializer } from "./ThemeInitializer";
+import { StatusBar } from "expo-status-bar";
+import { Navigator } from "./Navigator";
 
 export default function App() {
-  const theme = useAppStore((state) => state.theme);
-  const setTheme = useAppStore((state) => state.setTheme);
+  const themeMode = useAppStore((state) => state.themeMode);
+
+  const paperTheme = useMemo(
+    () => (themeMode === "dark" ? MD3DarkTheme : MD3LightTheme),
+    [themeMode]
+  );
 
   return (
-    <SafeAreaView>
-      <ThemeInitializer />
+    <>
+      <StatusBar
+        style={themeMode === "dark" ? "light" : "dark"}
+        backgroundColor={
+          themeMode === "dark" ? "rgb(30, 26, 29)" : "rgb(255, 251, 255)"
+        }
+      />
 
-      <View className="h-full items-center justify-center dark:bg-slate-800">
-        <Text className="mb-5 dark:text-white">Hello world</Text>
-
-        <TouchableOpacity onPress={setTheme}>
-          <Text className="dark:text-white border-2 dark:border-white px-20 py-4 rounded-xl mb-5">
-            Try clicking me!
-            {` ${theme === "dark" ? "🌙" : "🌞"}`}
-          </Text>
-        </TouchableOpacity>
-
-        <Text className="w-full text-center text-2xl dark:text-white capitalize mb-5">
-          {theme} mode activated!
-        </Text>
-
-        <Text className="ios:text-red-500 android:text-blue-500 dark:text-yellow-300 w-full text-center">
-          Open up App.tsx to start working on your app!
-        </Text>
-
-        <StatusBar
-          style={theme === "dark" ? "light" : "dark"}
-          backgroundColor={theme === "dark" ? "#1e293b" : "#ffffff"}
-        />
-      </View>
-    </SafeAreaView>
+      <PaperProvider theme={paperTheme}>
+        <SafeAreaView style={{ flex: 1 }}>
+          <Navigator />
+        </SafeAreaView>
+      </PaperProvider>
+    </>
   );
 }
