@@ -16,7 +16,7 @@ export const HomeRoute = () => {
       </Text>
 
       <Button mode="contained" onPress={toggleThemeMode}>
-        Toogle Theme {themeMode === "dark" ? "🌙" : "🌞"}
+        Toggle Theme {themeMode === "dark" ? "🌙" : "🌞"}
       </Button>
     </View>
   );
