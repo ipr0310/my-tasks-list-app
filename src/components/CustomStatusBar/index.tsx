@@ -4,8 +4,9 @@ import { useAppStore } from "../../../store";
 
 export const CustomStatusBar = () => {
   const themeMode = useAppStore((state) => state.themeMode);
+
   const backgroundColor =
-    themeMode === "dark" ? "rgb(30, 26, 29)" : "rgb(255, 251, 255)";
+    themeMode === "dark" ? "rgb(28, 27, 31)" : "rgb(255, 251, 255)";
 
   return (
     <SafeAreaView style={{ backgroundColor }}>
