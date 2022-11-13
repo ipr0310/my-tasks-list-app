@@ -1,6 +1,7 @@
+import { Appearance } from "react-native";
+import { persist } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import create from "zustand";
-import { persist } from "zustand/middleware";
 
 type ThemeMode = "dark" | "light";
 
@@ -9,10 +10,12 @@ interface AppStore {
   toggleThemeMode: () => void;
 }
 
+const defaultColorScheme = Appearance.getColorScheme() || "light";
+
 export const useAppStore = create<AppStore>()(
   persist(
     (set, get) => ({
-      themeMode: "light",
+      themeMode: defaultColorScheme,
       toggleThemeMode: () =>
         set(() => ({
           themeMode: get().themeMode === "dark" ? "light" : "dark",

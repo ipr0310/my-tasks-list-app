@@ -1,41 +1,41 @@
-import { useState } from "react";
-import { BottomNavigation } from "react-native-paper";
-import { HomeRoute } from "./src/routes/Home";
-import { AlbumsRoute } from "./src/routes/Albums";
-import { RecentsRoute } from "./src/routes/Recents";
-import { NotificationsRoute } from "./src/routes/Notifications";
+import { useTheme } from "react-native-paper";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { HomeRoute } from "./src/screens/Home";
+import { AlbumsRoute } from "./src/screens/Albums";
+import { RecentsRoute } from "./src/screens/Recents";
+
+const Tab = createMaterialBottomTabNavigator();
 
 export const Navigator = () => {
-  const [index, setIndex] = useState(0);
-  const [routes] = useState([
-    {
-      key: "home",
-      title: "Home",
-      focusedIcon: "heart",
-      unfocusedIcon: "heart-outline",
-    },
-    { key: "albums", title: "Albums", focusedIcon: "album" },
-    { key: "recents", title: "Recents", focusedIcon: "history" },
-    {
-      key: "notifications",
-      title: "Notifications",
-      focusedIcon: "bell",
-      unfocusedIcon: "bell-outline",
-    },
-  ]);
-
-  const renderScene = BottomNavigation.SceneMap({
-    home: HomeRoute,
-    albums: AlbumsRoute,
-    recents: RecentsRoute,
-    notifications: NotificationsRoute,
-  });
+  const {
+    colors: { primary },
+  } = useTheme();
 
   return (
-    <BottomNavigation
-      navigationState={{ index, routes }}
-      onIndexChange={setIndex}
-      renderScene={renderScene}
-    />
+    <Tab.Navigator labeled initialRouteName="home" activeColor={primary}>
+      <Tab.Screen
+        name="home"
+        options={{ tabBarLabel: "Home", tabBarIcon: "heart" }}
+        component={HomeRoute}
+      />
+
+      <Tab.Screen
+        name="albums"
+        options={{ tabBarLabel: "Albums", tabBarIcon: "album" }}
+        component={AlbumsRoute}
+      />
+
+      <Tab.Screen
+        name="recents"
+        options={{ tabBarLabel: "Recents", tabBarIcon: "history" }}
+        component={RecentsRoute}
+      />
+
+      <Tab.Screen
+        name="notifications"
+        options={{ tabBarLabel: "Notifications", tabBarIcon: "bell" }}
+        component={RecentsRoute}
+      />
+    </Tab.Navigator>
   );
 };
