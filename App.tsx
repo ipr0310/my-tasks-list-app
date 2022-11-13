@@ -4,9 +4,9 @@ import {
   MD3LightTheme,
   MD3DarkTheme,
 } from "react-native-paper";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { CustomStatusBar } from "./src/components/CustomStatusBar";
 import { useAppStore } from "./store";
-import { StatusBar } from "expo-status-bar";
 import { Navigator } from "./Navigator";
 
 export default function App() {
@@ -18,19 +18,12 @@ export default function App() {
   );
 
   return (
-    <>
-      <StatusBar
-        style={themeMode === "dark" ? "light" : "dark"}
-        backgroundColor={
-          themeMode === "dark" ? "rgb(30, 26, 29)" : "rgb(255, 251, 255)"
-        }
-      />
+    <SafeAreaProvider>
+      <CustomStatusBar />
 
       <PaperProvider theme={paperTheme}>
-        <SafeAreaView style={{ flex: 1 }}>
-          <Navigator />
-        </SafeAreaView>
+        <Navigator />
       </PaperProvider>
-    </>
+    </SafeAreaProvider>
   );
 }
