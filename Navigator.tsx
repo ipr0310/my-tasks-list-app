@@ -1,8 +1,8 @@
 import { useTheme } from "react-native-paper";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { HomeRoute } from "./src/screens/Home";
-import { AlbumsRoute } from "./src/screens/Albums";
-import { RecentsRoute } from "./src/screens/Recents";
+import { SettingsRoute } from "./src/screens/Settings";
+import { AboutRoute } from "./src/screens/About";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -15,26 +15,20 @@ export const Navigator = () => {
     <Tab.Navigator labeled initialRouteName="home" activeColor={primary}>
       <Tab.Screen
         name="home"
-        options={{ tabBarLabel: "Home", tabBarIcon: "heart" }}
+        options={{ tabBarLabel: "Home", tabBarIcon: "home" }}
         component={HomeRoute}
       />
 
       <Tab.Screen
-        name="albums"
-        options={{ tabBarLabel: "Albums", tabBarIcon: "album" }}
-        component={AlbumsRoute}
+        name="settings"
+        options={{ tabBarLabel: "Settings", tabBarIcon: "adjust" }}
+        component={SettingsRoute}
       />
 
       <Tab.Screen
-        name="recents"
-        options={{ tabBarLabel: "Recents", tabBarIcon: "history" }}
-        component={RecentsRoute}
-      />
-
-      <Tab.Screen
-        name="notifications"
-        options={{ tabBarLabel: "Notifications", tabBarIcon: "bell" }}
-        component={RecentsRoute}
+        name="about"
+        options={{ tabBarLabel: "About", tabBarIcon: "information" }}
+        component={AboutRoute}
       />
     </Tab.Navigator>
   );
