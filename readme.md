@@ -23,4 +23,5 @@
 - Once dependencies are installed, use ``yarn start`` for launching dev enviroment
 - Expo cli, will guide you through the setup in your device
 
-### If you do not know how to use Expo, click here: https://docs.expo.dev/tutorial/create-your-first-app/
+### If you do not know how to use Expo, click here: 
+https://docs.expo.dev/tutorial/create-your-first-app/
