@@ -10,7 +10,7 @@ export const SettingsRoute = () => {
     <View>
       <Text
         variant="displaySmall"
-        style={{ marginBottom: 20, textAlign: "center" }}
+        style={{ marginTop: 25, marginBottom: 25, textAlign: "center" }}
       >
         Settings
       </Text>
@@ -19,7 +19,11 @@ export const SettingsRoute = () => {
         Theme mode: {themeMode === "dark" ? "Dark" : "Light"}
       </Text>
 
-      <Button mode="contained" onPress={toggleThemeMode}>
+      <Button
+        mode="contained"
+        onPress={toggleThemeMode}
+        style={{ width: "75%", marginLeft: "auto", marginRight: "auto" }}
+      >
         Toggle Theme {themeMode === "dark" ? "🌙" : "🌞"}
       </Button>
     </View>
