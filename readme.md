@@ -2,14 +2,14 @@
 ### My To-do app stack:
 | Stack                      | Version     |
 |----------------------------|-------------|
-| React Native               | 70.5        |
-| Expo SDK                   | 47          |
-| React Native Async Storage | 1.17.3      |
-| Flash List                 | 1.3.1       |
-| Zustand                    | 4.1.4       |
-| React Native Paper         | 5.0.0-rc.10 |
-| Expo Status Bar            | 1.4.2       |
-| React Navigation           | 6.0.13      |
+| React Native               | 71.7        |
+| Expo SDK                   | 48          |
+| React Native Async Storage | 1.17.11     |
+| Flash List                 | 1.4.0       |
+| Zustand                    | 4.3.8       |
+| React Native Paper         | 5.7.2       |
+| Expo Status Bar            | 1.4.4       |
+| React Navigation           | 6.1.6       |
 
 ### Requirements before coding:
 - Yarn
@@ -22,6 +22,9 @@
 - Use `yarn` command for installing dependencies
 - Once dependencies are installed, use ``yarn start`` for launching dev enviroment
 - Expo cli, will guide you through the setup in your device
+
+### Tips:
+- Upgrade all dependencies to match Latest SDK: `npx expo install --fix`
 
 ### If you do not know how to use Expo, click here: 
 https://docs.expo.dev/tutorial/create-your-first-app/

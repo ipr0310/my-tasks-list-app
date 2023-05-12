@@ -1,7 +1,7 @@
 import { Appearance } from "react-native";
-import { persist } from "zustand/middleware";
+import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import create from "zustand";
 
 type ThemeMode = "dark" | "light";
 
@@ -23,7 +23,7 @@ export const useAppStore = create<AppStore>()(
     }),
     {
       name: "app-storage", // name of item in the storage (must be unique)
-      getStorage: () => AsyncStorage, // (optional) by default the 'localStorage' is used
+      storage: createJSONStorage(() => AsyncStorage), // (optional) by default the 'localStorage' is used
     }
   )
 );

@@ -1,6 +1,6 @@
-import { persist } from "zustand/middleware";
+import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import create from "zustand";
 
 type task = { id: string; label: string };
 
@@ -27,7 +27,7 @@ export const useTasksStore = create<TasksStore>()(
     }),
     {
       name: "tasks-storage", // name of item in the storage (must be unique)
-      getStorage: () => AsyncStorage, // (optional) by default the 'localStorage' is used
+      storage: createJSONStorage(() => AsyncStorage), // (optional) by default the 'localStorage' is used
     }
   )
 );
